@@ -1,5 +1,7 @@
 # NAT
 
+[![Build Status](https://travis-ci.org/timlkelly/nat.svg?branch=master)](https://travis-ci.org/timlkelly/nat)
+
 Nerdery Assessment Test
 
 ## Testing
