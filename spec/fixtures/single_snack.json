@@ -1,0 +1,8 @@
+{
+  "id": 1000,
+  "name": "Ramen",
+  "optional": false,
+  "purchaseLocations": "Whole Foods",
+  "purchaseCount": 1,
+  "lastPurchaseDate": "2/22/2017"
+}

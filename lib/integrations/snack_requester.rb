@@ -7,4 +7,8 @@ class SnackRequester
 
     JSON.parse(response.body)
   end
+
+  # Use a separate class to make API requests
+  # This helps keep the core of the app clean and controllers
+  # shouldn't make requests
 end
