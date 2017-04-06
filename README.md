@@ -17,7 +17,7 @@ Nerdery Assessment Test
 - `bundle exec rake db:migrate`
 - `bundle exec rake db:test:prepare`
 - `./start` use the included [bash script](https://github.com/timlkelly/nat/blob/master/start) to start the development server
-- Go to [localhost:3000](http://localhost:3000)
+- Go to [localhost:5000](http://localhost:5000)
 
 ## Testing
 Use [guard](https://github.com/guard/guard) to monitor and
