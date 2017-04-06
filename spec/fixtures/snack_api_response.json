@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1000,
+    "name": "Ramen",
+    "optional": false,
+    "purchaseLocations": "Whole Foods",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/22/2017"
+  },
+  {
+    "id": 1001,
+    "name": "Pop Tarts",
+    "optional": false,
+    "purchaseLocations": "Cub Foods",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/28/2017"
+  },
+  {
+    "id": 1002,
+    "name": "Corn Nuts",
+    "optional": false,
+    "purchaseLocations": "Cub Foods",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/28/2017"
+  },
+  {
+    "id": 1003,
+    "name": "Bagels",
+    "optional": false,
+    "purchaseLocations": "Cub Foods",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/15/2017"
+  },
+  {
+    "id": 1004,
+    "name": "Wasabi Peas",
+    "optional": false,
+    "purchaseLocations": "CVS",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/15/2017"
+  },
+  {
+    "id": 1005,
+    "name": "Mixed Nuts",
+    "optional": false,
+    "purchaseLocations": "CVS",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/8/2017"
+  },
+  {
+    "id": 1006,
+    "name": "Bananas",
+    "optional": false,
+    "purchaseLocations": "Whole Foods",
+    "purchaseCount": 1,
+    "lastPurchaseDate": "2/12/2017"
+  }
+]
