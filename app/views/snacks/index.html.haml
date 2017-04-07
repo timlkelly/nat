@@ -7,15 +7,11 @@
       %tr
         %th
           Name
-        %th
-          Last Purchased
     %tbody
       - @permanent_snacks.each do |snack|
         %tr
           %td
             = snack.name
-          %td
-            = l snack.last_purchased_at, format: :date
 
   - if @suggested_snacks.empty?
     %div

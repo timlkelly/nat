@@ -8,4 +8,14 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
+    %nav.navbar.navbar-full
+      .navbar-brand
+        Nerdery: Ordering, Catering, and Delivery
+      %ul.nav.navbar-nav
+        %li.nav-item
+          %a.nav-link
+            = link_to 'Snacks', snacks_path, class: 'nav-link'
+          %a.nav-link
+            = link_to 'Suggest a Snack', new_snack_path, class: 'nav-link'
+
     = yield
