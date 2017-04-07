@@ -1,20 +1,45 @@
 .container-fluid
+  %header.info-header
+    %h4
+      Permanent Snacks
   %table.table.table-striped.table-bordered
     %thead
       %tr
         %th
           Name
         %th
-          Votes
-        %th
           Last Purchased
     %tbody
-      - @snacks.each do |snack|
+      - @permanent_snacks.each do |snack|
         %tr
           %td
             = snack.name
           %td
-            = snack.votes
-          %td
             = l snack.last_purchased_at, format: :date
 
+  - if @suggested_snacks.empty?
+    %div
+      %h4
+        There are no suggested snacks yet. Suggest one!
+  - else
+    %header.info-header
+      %h4
+        Suggested Snacks
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th
+            Name
+          %th
+            Votes
+          %th
+            Last Purchased
+      %tbody
+        - @suggested_snacks.each do |snack|
+          %tr
+            %td
+              = snack.name
+            %td
+              = snack.votes
+            %td
+              = l snack.last_purchased_at, format: :date
