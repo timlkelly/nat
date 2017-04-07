@@ -1,4 +1,20 @@
-%div
-  - @snacks.each do |snack|
-    = snack.name
+.container-fluid
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th
+          Name
+        %th
+          Votes
+        %th
+          Last Purchased
+    %tbody
+      - @snacks.each do |snack|
+        %tr
+          %td
+            = snack.name
+          %td
+            = snack.votes
+          %td
+            = l snack.last_purchased_at, format: :date
 

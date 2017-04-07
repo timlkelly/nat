@@ -32,11 +32,9 @@ RSpec.describe SnackProcessor do
       target = {
         name: 'Ramen',
         purchase_location: 'Whole Foods',
-        votes: 0,
-        suggestion: false,
         optional: false,
         times_purchased: 1,
-        last_purchased_at: '2/22/2017',
+        last_purchased_at: Date.strptime('2/22/2017', '%m/%d/%Y'),
         api_id: 1000
       }
 
