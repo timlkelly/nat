@@ -13,16 +13,13 @@ class SnacksController < ApplicationController
   end
 
   def create
-    if already_voted?
-      flash[:error] = ['You have already voted this month']
-      redirect_to snacks_path and return
-    end
+    already_voted_error and return if already_voted?
 
     snack = Snack.new(snack_params)
     snack.optional = true
 
     if snack.save
-      cookies['voted'] = true
+      mark_as_voted
       redirect_to snacks_path
     else
       flash[:error] = snack.errors.full_messages
@@ -31,10 +28,27 @@ class SnacksController < ApplicationController
     end
   end
 
+  def update
+    already_voted_error and return if already_voted?
+
+    @snack = Snack.find(params[:id])
+    @snack.update_attribute(:suggested, true)
+    mark_as_voted
+  end
+
   private
 
   def snack_params
     params.require(:snack).permit(:name, :purchase_location)
+  end
+
+  def mark_as_voted
+    cookies['voted'] = true
+  end
+
+  def already_voted_error
+    flash[:error] = ['You have already voted this month']
+    redirect_to snacks_path
   end
 
   def already_voted?

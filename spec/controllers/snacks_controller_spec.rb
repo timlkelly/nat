@@ -111,6 +111,39 @@ RSpec.describe SnacksController, type: :controller do
     end
   end
 
+  describe '#update' do
+    before(:example) do
+      @snack = FactoryGirl.create(:snack)
+    end
+
+    it 'locates the suggested snack' do
+      put :update, params: { id: @snack }
+
+      expect(assigns(:snack)).to eq(@snack)
+    end
+
+    it 'marks snack as suggested' do
+      put :update, params: { id: @snack }
+      @snack.reload
+
+      expect(@snack.suggested).to be_truthy
+    end
+
+    it 'marks the user having voted' do
+      put :update, params: { id: @snack }
+
+      expect(response.cookies['voted']).to be_truthy
+    end
+
+    it 'only allows one suggestion per month' do
+      request.cookies['voted'] = true
+      put :update, params: { id: @snack }
+
+      expect(flash[:error]).to be_present
+      expect(response).to redirect_to(snacks_path)
+    end
+  end
+
   describe '#already_voted?' do
     before(:example) do
       controller = SnacksController.new
@@ -128,6 +161,12 @@ RSpec.describe SnacksController, type: :controller do
       it 'returns false' do
         request.cookies['voted'] = false
 
+        expect(controller.instance_eval { already_voted? }).to be_falsey
+      end
+    end
+
+    context 'no cookie set' do
+      it 'returns false' do
         expect(controller.instance_eval { already_voted? }).to be_falsey
       end
     end
