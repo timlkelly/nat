@@ -1,2 +1,7 @@
 $enable-felx: true;
 @import "bootstrap";
+
+.error {
+  background: red;
+  display: inline-block;
+}

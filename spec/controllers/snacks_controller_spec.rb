@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SnacksController, type: :controller do
   describe '#index' do
     let(:permanent_snack) { FactoryGirl.create(:snack, optional: false) }
-    let(:suggested_snack) { FactoryGirl.create(:snack, optional: true) }
+    let(:suggested_snack) { FactoryGirl.create(:snack, optional: true, suggested: true) }
 
     it 'renders 200 and assigns @snacks' do
       get :index
@@ -16,7 +16,7 @@ RSpec.describe SnacksController, type: :controller do
   end
 
   describe '#new' do
-    let(:suggestible_snack) { FactoryGirl.create(:snack, optional: true, suggestion: false) }
+    let(:suggestible_snack) { FactoryGirl.create(:snack, optional: true, suggested: false) }
 
     it 'renders 200' do
       get :new
@@ -28,7 +28,7 @@ RSpec.describe SnacksController, type: :controller do
     it 'assigns suggestable snacks' do
       get :new
 
-      expect(assigns(:snack)).to be_an_instance_of(Snack)
+      expect(assigns(:suggestible_snacks)).to eq([suggestible_snack])
     end
   end
 
@@ -37,7 +37,6 @@ RSpec.describe SnacksController, type: :controller do
 
     context 'with valid attributes' do
       it 'saves the new snack' do
-
         expect {
           post :create, params: { snack: snack_attributes }
         }.to change(Snack, :count).by(1)
@@ -108,6 +107,28 @@ RSpec.describe SnacksController, type: :controller do
           post :create, params: { snack: snack_attributes }
         }.to_not change(Snack, :count)
         expect(flash[:error]).to be_present
+      end
+    end
+  end
+
+  describe '#already_voted?' do
+    before(:example) do
+      controller = SnacksController.new
+    end
+
+    context 'has voted' do
+      it 'returns true' do
+        request.cookies['voted'] = true
+
+        expect(controller.instance_eval { already_voted? }).to be_truthy
+      end
+    end
+
+    context 'has not voted' do
+      it 'returns false' do
+        request.cookies['voted'] = false
+
+        expect(controller.instance_eval { already_voted? }).to be_falsey
       end
     end
   end

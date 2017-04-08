@@ -1,19 +1,13 @@
-.container-fluid
-  - if flash.present?
-    %ul
-    - flash[:error].each do |error|
-      %li
-        = error
-  %div
-    %h4
-      Suggest a snack from the list or write in a suggestion!
-    .div
-      = form_for :snack, url: snacks_path do |f|
-        %p
-          = f.label :name
-          = f.text_field :name
-        %p
-          = f.label :purchase_location
-          = f.text_field :purchase_location
-        %p
-          = f.submit('Suggest Snack')
+%div
+  %h4
+    Suggest a snack from the list or write in a suggestion!
+  .div
+    = form_for :snack, url: snacks_path do |f|
+      %p
+        = f.label :name
+        = f.text_field :name
+      %p
+        = f.label :purchase_location
+        = f.text_field :purchase_location
+      %p
+        = f.submit('Suggest Snack')

@@ -18,4 +18,12 @@
           %a.nav-link
             = link_to 'Suggest a Snack', new_snack_path, class: 'nav-link'
 
-    = yield
+    .container-fluid
+      - if flash.present?
+        %div.error
+          %ul
+          - flash[:error].each do |error|
+            %li
+              = error
+
+      = yield
