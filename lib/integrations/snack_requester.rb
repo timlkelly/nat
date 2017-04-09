@@ -24,7 +24,12 @@ class SnackRequester
 
       response = self.class.post(API_PATH, options)
 
-      snack.update_attribute(:api_id, response['id'])
+      attributes_hash = {
+        api_id: response['id'],
+        sent_to_ocd: true
+      }
+
+      snack.update_attributes(attributes_hash)
       # Need to set the api id because that is how we locate
       # snacks in the database and make sure we aren't making
       # duplicates when we request snacks. See line 4 in Snack

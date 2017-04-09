@@ -20,10 +20,12 @@ RSpec.describe SnackRequester do
       VCR.use_cassette('send_snack_post') do
         snack = FactoryGirl.create(:snack, added_by_employee: true)
         expect(snack.api_id).to_not be_present
+        expect(snack.sent_to_ocd).to be_falsey
 
         SnackRequester.new.send_new_snacks([snack])
 
         expect(snack.api_id).to be_present
+        expect(snack.sent_to_ocd).to be_truthy
       end
     end
   end
