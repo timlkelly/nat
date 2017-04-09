@@ -5,7 +5,7 @@ RSpec.describe FetchSnacksJob, type: :job do
     it 'enqueues the correct job' do
       ActiveJob::Base.queue_adapter = :test
 
-      expect{
+      expect {
         FetchSnacksJob.perform_later
       }.to have_enqueued_job(FetchSnacksJob)
     end
