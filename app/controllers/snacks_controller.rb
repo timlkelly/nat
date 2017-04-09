@@ -58,7 +58,7 @@ class SnacksController < ApplicationController
   end
 
   def mark_as_voted
-    cookies['voted'] = true
+    cookies['voted'] = { value: true, expires: 1.month.from_now }
   end
 
   def already_voted_error
@@ -72,6 +72,6 @@ class SnacksController < ApplicationController
 
   def check_vote_cookie
     return if cookies['remaining_snack_votes'].present?
-    cookies['remaining_snack_votes'] = 3
+    cookies['remaining_snack_votes'] = { value: 3, expires: 1.month.from_now }
   end
 end
