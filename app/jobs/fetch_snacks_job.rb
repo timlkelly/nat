@@ -6,6 +6,9 @@ class FetchSnacksJob < ApplicationJob
 
   def perform
     snacks_json = SnackRequester.new.request_snacks
+
     SnackProcessor.new.create(snacks_json)
   end
 end
+
+# See snack_requester.rb for comments, as they apply in a few places
