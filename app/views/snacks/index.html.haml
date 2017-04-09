@@ -1,6 +1,8 @@
-%div.vote-count
+%div
   %h4
-    Remaining Votes: #{cookies['remaining_snack_votes']}
+    Remaining Votes:
+  %h4#remaining-votes
+    = cookies['remaining_snack_votes']
 %header.info-header
   %h4
     Permanent Snacks

@@ -40,6 +40,17 @@ class SnacksController < ApplicationController
     redirect_to snacks_path
   end
 
+  def update_vote_count
+    @snack = Snack.find(params['id'].to_i)
+    @snack.votes += 1
+    @snack.save
+    # Also see javascript notes; This was a bit off to implement.
+    # I realize it isn't RESTful and for that reason, I'm not super
+    # found of it. While I like the user experience that the javascript
+    # implementation allows, it was strange to develop and I wasn't
+    # sure exactly of the best practices here.
+  end
+
   private
 
   def snack_params
