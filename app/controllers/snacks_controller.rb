@@ -19,6 +19,7 @@ class SnacksController < ApplicationController
 
     snack = Snack.new(snack_params)
     snack.optional = true
+    snack.added_by_employee = true
 
     if snack.save
       mark_as_voted

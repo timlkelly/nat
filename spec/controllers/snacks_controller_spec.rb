@@ -55,6 +55,13 @@ RSpec.describe SnacksController, type: :controller do
 
         expect(snack.optional).to be_truthy
       end
+
+      it 'marks the snack as added by employee' do
+        post :create, params: { snack: snack_attributes }
+        snack = Snack.first
+
+        expect(snack.added_by_employee).to be_truthy
+      end
     end
 
     context 'invalid attributes' do
