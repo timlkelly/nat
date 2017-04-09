@@ -177,4 +177,23 @@ RSpec.describe SnacksController, type: :controller do
       end
     end
   end
+
+  describe '#check_vote_cookie' do
+    context 'cookie missing' do
+      it 'sets the cookie' do
+        get :index
+
+        expect(cookies['remaining_snack_votes']).to eq('3')
+      end
+    end
+
+    context 'already present' do
+      it 'does not reset count' do
+        request.cookies['remaining_snack_votes'] = 2
+        get :index
+
+        expect(cookies['remaining_snack_votes']).to eq('2')
+      end
+    end
+  end
 end

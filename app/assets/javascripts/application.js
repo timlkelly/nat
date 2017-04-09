@@ -26,3 +26,4 @@ function increaseVoteCount(id) {
 
   votesPageElement.innerHTML = votes
 }
+

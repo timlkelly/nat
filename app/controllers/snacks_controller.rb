@@ -4,6 +4,8 @@ class SnacksController < ApplicationController
 
     @permanent_snacks = Snack.where(optional: false)
     @suggested_snacks = Snack.where(optional: true, suggested: true)
+
+    check_vote_cookie
   end
 
   def new
@@ -55,5 +57,10 @@ class SnacksController < ApplicationController
 
   def already_voted?
     true if cookies['voted']
+  end
+
+  def check_vote_cookie
+    return if cookies['remaining_snack_votes'].present?
+    cookies['remaining_snack_votes'] = 3
   end
 end
