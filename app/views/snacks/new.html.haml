@@ -3,12 +3,6 @@
     Suggest a snack from the list or write in a suggestion!
 
   %div
-    = form_for :snack, url: snack_path(@suggestible_snacks), method: :patch do |f|
-      = f.select 'id', options_from_collection_for_select(@suggestible_snacks, 'id', 'name'), include_blank: true
-
-      = f.submit('Suggest Snack')
-
-  %div
     = form_for :snack, url: snacks_path do |f|
       %p
         = f.label :name
@@ -19,11 +13,17 @@
       %p
         = f.submit('Suggest Snack')
 
+  %div
+    = form_for :snack, url: snack_path(@suggestible_snacks), method: :patch do |f|
+      = f.select 'id', options_from_collection_for_select(@suggestible_snacks, 'id', 'name'), include_blank: true
+
+      = f.submit('Suggest Snack')
+
 / The specs provided definitely made me develop this view a little strangely
-/ The suggestion page is supposed to have both a form for writing in a suggestion
-/ and to suggest an item on the list already.
-/ However the actions are different between those two, as you'll see in the controller.
-/ Writing in a suggestion is `create` while selecting an existing snack
-/ is an `update` because it's only updating one field of the model.
-/ Because of this I had to use two separate forms because they are going to different
-/ actions in the controller.
+/ The suggestion page is supposed to have both a form for writing in a
+/ suggestion and to suggest an item on the list already.
+/ However the actions are different between those two, as you'll see in the
+/ controller. Writing in a suggestion is `create` while selecting an existing
+/ snack is an `update` because it's only updating one field of the model.
+/ Because of this I had to use two separate forms because they are going to
+/ different actions in the controller.
