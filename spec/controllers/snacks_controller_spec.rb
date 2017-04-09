@@ -117,29 +117,35 @@ RSpec.describe SnacksController, type: :controller do
     end
 
     it 'locates the suggested snack' do
-      put :update, params: { id: @snack }
+      patch :update, params: { id: @snack, snack: { id: @snack } }
 
       expect(assigns(:snack)).to eq(@snack)
     end
 
     it 'marks snack as suggested' do
-      put :update, params: { id: @snack }
+      patch :update, params: { id: @snack, snack: { id: @snack } }
       @snack.reload
 
       expect(@snack.suggested).to be_truthy
     end
 
     it 'marks the user having voted' do
-      put :update, params: { id: @snack }
+      patch :update, params: { id: @snack, snack: { id: @snack } }
 
       expect(response.cookies['voted']).to be_truthy
     end
 
     it 'only allows one suggestion per month' do
       request.cookies['voted'] = true
-      put :update, params: { id: @snack }
+      patch :update, params: { id: @snack, snack: { id: @snack } }
 
       expect(flash[:error]).to be_present
+      expect(response).to redirect_to(snacks_path)
+    end
+
+    it 'redirects you home after suggesting' do
+     patch :update, params: { id: @snack, snack: { id: @snack } }
+
       expect(response).to redirect_to(snacks_path)
     end
   end
