@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require_tree .
+
+function upVote(id) {
+  increaseVoteCount(id);
+}
+
+function increaseVoteCount(id) {
+  let votesPageElement = document.getElementById('vote-' + id)
+  let votes = parseInt(votesPageElement.innerHTML) + 1
+
+  votesPageElement.innerHTML = votes
+}

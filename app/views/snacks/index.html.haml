@@ -24,6 +24,7 @@
     %thead
       %tr
         %th
+        %th
           Name
         %th
           Votes
@@ -33,8 +34,11 @@
       - @suggested_snacks.each do |snack|
         %tr
           %td
-            = snack.name
+            %a{ href: '', onclick: 'upVote(this.id); return false', id: snack.id }
+              &#x25B2
           %td
+            = snack.name
+          %td{ id: "vote-#{snack.id}" }
             = snack.votes
           %td
             - if snack.last_purchased_at.present?
