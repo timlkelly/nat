@@ -11,7 +11,7 @@ class SnacksController < ApplicationController
   def new
     @title = 'Nerdery OCD Snacks: Suggest a Snack'
 
-    @suggestible_snacks = Snack.where(optional: true, suggested: false)
+    @suggestible_snacks = Snack.where(optional: true, suggested: true)
   end
 
   def create
@@ -20,6 +20,7 @@ class SnacksController < ApplicationController
     snack = Snack.new(snack_params)
     snack.optional = true
     snack.added_by_employee = true
+    snack.suggested = true
 
     if snack.save
       mark_as_voted

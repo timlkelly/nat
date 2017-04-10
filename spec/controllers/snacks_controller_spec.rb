@@ -16,7 +16,7 @@ RSpec.describe SnacksController, type: :controller do
   end
 
   describe '#new' do
-    let(:suggestible_snack) { FactoryGirl.create(:snack, optional: true, suggested: false) }
+    let(:suggestible_snack) { FactoryGirl.create(:snack, optional: true, suggested: true) }
 
     it 'renders 200' do
       get :new
