@@ -1,3 +1,6 @@
+require './lib/integrations/snack_requester'
+require './lib/integrations/snack_processor'
+
 class FetchSnacksJob < ApplicationJob
   queue_as :default
 
