@@ -15,7 +15,7 @@
     - @permanent_snacks.each do |snack|
       %tr
         %td
-          = snack.name
+          = snack.name.capitalize
 
 - if @suggested_snacks.empty?
   %div
@@ -42,7 +42,7 @@
             %a{ href: '', onclick: 'upVote(this.id); return false', id: snack.id }
               &#x25B2
           %td
-            = snack.name
+            = snack.name.capitalize
           %td{ id: "vote-#{snack.id}" }
             = snack.votes
           %td
