@@ -18,7 +18,7 @@
 
 function upVote(id) {
   if(ableToVote()) {
-    return false
+    return false;
   }
 
   increaseVoteCount(id);
@@ -31,24 +31,24 @@ function ableToVote() {
   console.log(cookieValue)
   if(cookieValue == 0) {
     alert('You have no more votes')
-    return true
+    return true;
   }
 }
 
 function increaseVoteCount(id) {
-  let votesPageElement = document.getElementById('vote-' + id)
-  let votes = parseInt(votesPageElement.innerHTML) + 1
+  var votesPageElement = document.getElementById('vote-' + id)
+  var votes = parseInt(votesPageElement.innerHTML) + 1
 
   votesPageElement.innerHTML = votes
 }
 
 function decreaseRemainingVotes() {
-  let remainingVotes = document.getElementById('remaining-votes')
-  let voteCount = parseInt(remainingVotes.innerHTML)
+  var remainingVotes = document.getElementById('remaining-votes')
+  var voteCount = parseInt(remainingVotes.innerHTML)
 
   if(voteCount > 0){
     newVoteCount = voteCount - 1
-    let newCookie = 'remaining_snack_votes='.concat(newVoteCount)
+    var newCookie = 'remaining_snack_votes='.concat(newVoteCount)
     document.cookie = newCookie
   } else {
     newVoteCount = 0
