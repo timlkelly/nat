@@ -1,50 +1,51 @@
-%div
+%section
   %h4
     Remaining Votes:
   %h4#remaining-votes
     = cookies['remaining_snack_votes']
-%header.info-header
-  %h4
-    Permanent Snacks
-%table.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th
-        Name
-  %tbody
-    - @permanent_snacks.each do |snack|
-      %tr
-        %td
-          = snack.name.capitalize
-
-- if @suggested_snacks.empty?
-  %div
-    %h4
-      There are no suggested snacks yet. Suggest one!
-- else
+%section
   %header.info-header
     %h4
-      Suggested Snacks
+      Permanent Snacks
   %table.table.table-striped.table-bordered
     %thead
       %tr
         %th
-        %th
           Name
-        %th
-          Votes
-        %th
-          Last Purchased
     %tbody
-      - @suggested_snacks.each do |snack|
+      - @permanent_snacks.each do |snack|
         %tr
           %td
-            %a{ href: '', onclick: 'upVote(this.id); return false', id: snack.id }
-              &#x25B2
-          %td
             = snack.name.capitalize
-          %td{ id: "vote-#{snack.id}" }
-            = snack.votes
-          %td
-            - if snack.last_purchased_at.present?
-              = l snack.last_purchased_at, format: :date
+
+%section
+  - if @suggested_snacks.empty?
+    %h4
+      There are no suggested snacks yet. Suggest one!
+  - else
+    %header.info-header
+      %h4
+        Suggested Snacks
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th
+          %th
+            Name
+          %th
+            Votes
+          %th
+            Last Purchased
+      %tbody
+        - @suggested_snacks.each do |snack|
+          %tr
+            %td
+              %a{ href: '', onclick: 'upVote(this.id); return false', id: snack.id }
+                &#x25B2
+            %td
+              = snack.name.capitalize
+            %td{ id: "vote-#{snack.id}" }
+              = snack.votes
+            %td
+              - if snack.last_purchased_at.present?
+                = l snack.last_purchased_at, format: :date
