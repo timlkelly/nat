@@ -149,9 +149,21 @@ RSpec.describe SnacksController, type: :controller do
     end
 
     it 'redirects you home after suggesting' do
-     patch :update, params: { id: @snack, snack: { id: @snack } }
+      patch :update, params: { id: @snack, snack: { id: @snack } }
 
       expect(response).to redirect_to(snacks_path)
+    end
+
+    context 'snack already suggested' do
+      it 'redirects with error' do
+        @snack.suggested = true
+        @snack.save
+
+        patch :update, params: { id: @snack, snack: { id: @snack } }
+
+        expect(flash[:error]).to be_present
+        expect(response).to redirect_to(new_snack_path)
+      end
     end
   end
 

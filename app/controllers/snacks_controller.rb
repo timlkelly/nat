@@ -33,8 +33,9 @@ class SnacksController < ApplicationController
 
   def update
     already_voted_error and return if already_voted?
-
     @snack = Snack.find(params[:snack][:id])
+
+    already_suggested_error and return if @snack.suggested
     @snack.update_attribute(:suggested, true)
 
     mark_as_voted
@@ -65,6 +66,11 @@ class SnacksController < ApplicationController
   def already_voted_error
     flash[:error] = ['You have already voted this month']
     redirect_to snacks_path
+  end
+
+  def already_suggested_error
+    flash[:error] = ['That snack has already been suggested']
+    redirect_to new_snack_path
   end
 
   def already_voted?
