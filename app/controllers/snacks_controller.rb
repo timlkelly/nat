@@ -26,8 +26,7 @@ class SnacksController < ApplicationController
       redirect_to snacks_path
     else
       flash[:error] = snack.errors.full_messages
-      @snack = snack # return snack so the completed fields are filled out
-      render 'new'
+      redirect_to new_snack_path
     end
   end
 

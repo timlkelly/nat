@@ -80,8 +80,7 @@ RSpec.describe SnacksController, type: :controller do
       it 're-renders the new method' do
         post :create, params: { snack: { name: nil, purchase_location: nil } }
 
-        expect(response.status).to eq(200)
-        expect(response).to render_template('new')
+        expect(response.status).to eq(302)
         expect(flash[:error]).to be_present
       end
     end
@@ -100,8 +99,7 @@ RSpec.describe SnacksController, type: :controller do
       it 're-renders the new method' do
         post :create, params: { snack: { name: 'Chips', purchase_location: 'Berkeley Bowl' } }
 
-        expect(response.status).to eq(200)
-        expect(response).to render_template('new')
+        expect(response.status).to eq(302)
         expect(flash[:error]).to be_present
       end
     end
